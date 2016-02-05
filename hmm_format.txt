@@ -1,0 +1,39 @@
+// # states, # tokens
+4 20
+
+// start distribution
+50 40  0 10  0
+
+// state distribution (last column = end state)
+ 0  0 95  5  0
+10  0  0 80 10
+ 5  0  0 85 10
+25 25  0  0 50
+
+// tokens
+the
+a
+that
+Tom
+John
+Mary
+Alice
+Jerry
+cat
+dog
+car
+pen
+bed
+apple
+bit
+ate
+saw
+played
+hit
+gave
+
+// token distribution
+4 3 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1
