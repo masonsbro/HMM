@@ -1,3 +1,5 @@
 main
+test/test_*
+!test/test_*.c
 
 *.o
