@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
 #include "../hmmlib.h"
 #include "unit_test.h"
@@ -27,8 +26,6 @@ int main(int argc, char* argv[]) {
                                        {0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                                        {0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0},
                                        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1}};
-
-    srand(time(NULL));
 
     HMM* hmm = malloc(sizeof(HMM));
     FILE* stream = fopen("test/hmm_1", "r");

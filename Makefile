@@ -1,8 +1,10 @@
-TESTS=test/test_load test/test_save test/test_sanity
-TESTS_C=$(TESTS:=.c)
+TESTS_C=$(wildcard test/test_*.c)
+TESTS=$(basename $(TESTS_C))
 TESTS_O=$(TESTS:=.o)
 
-all: main
+REMOVE=test/hmm_1_dup
+
+all: test
 
 main: main.o hmmlib.o
 	gcc main.o hmmlib.o -o main
@@ -17,4 +19,4 @@ $(TESTS): %: %.o hmmlib.o test/unit_test.o
 	gcc -c $< -o $@
 
 clean:
-	rm */*.o *.o main $(TESTS)
+	rm -f */*.o *.o main $(TESTS) $(REMOVE)
