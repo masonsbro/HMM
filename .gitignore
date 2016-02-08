@@ -3,5 +3,3 @@ test/test_*
 !test/test_*.c
 
 *.o
-
-test/hmm_1_dup

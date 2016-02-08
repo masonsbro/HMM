@@ -35,6 +35,8 @@ int main(int argc, char* argv[]) {
     fclose(stream_3);
     string_2[length_2] = 0;
 
+    remove("test/hmm_1_dup");
+
     assert_str_e(string_1, string_2);
 
     finish_test();
