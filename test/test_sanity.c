@@ -8,7 +8,7 @@ int main(int argc, char* argv[]);
 
 int main(int argc, char* argv[]) {
 
-    set_test_name("test_sanity");
+    set_test_name(argv[0]);
 
     // First, load the file (this is correct as per test_load)
     HMM* hmm = malloc(sizeof(HMM));

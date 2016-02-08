@@ -82,3 +82,35 @@ void save_HMM(FILE* stream, HMM* hmm) {
     }
 
 }
+
+int generate_sequence(HMM* hmm, char** sequence, int max_length) {
+    
+    int cur_state = 0;
+    int j, accumulator, threshold;
+
+    for (j = -1; j < max_length && cur_state != hmm->num_states; j++) {
+        if (cur_state != 0) {
+            accumulator = 0;
+            threshold = rand() % hmm->token_distribution_total[cur_state] + 1;
+            for (int i = 0; ; i++) {
+                accumulator += hmm->token_distribution[cur_state][i];
+                if (accumulator >= threshold) {
+                    sequence[j] = hmm->tokens[i];
+                    break;
+                }
+            }
+        }
+        accumulator = 0;
+        threshold = rand() % hmm->state_distribution_total[cur_state] + 1;
+        for (int i = 0; ; i++) {
+            accumulator += hmm->state_distribution[cur_state][i];
+            if (accumulator >= threshold) {
+                cur_state = i;
+                break;
+            }
+        }
+    }
+
+    return j;
+
+}
