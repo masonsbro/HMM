@@ -1,7 +1,7 @@
+#include "hmmlib.h"
+
 #include <stdio.h>
 #include <stdlib.h>
-
-#include "hmmlib.h"
 
 #define MAX_TOKEN_LENGTH 16
 
@@ -111,5 +111,9 @@ int generate_sequence(HMM* hmm, char** sequence, int max_length) {
     }
 
     return j;
+
+}
+
+void train_supervised(HMM* hmm, char** corpus, int* tags, int length) {
 
 }
