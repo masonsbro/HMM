@@ -9,6 +9,7 @@ main: main.o hmmlib.o
 
 test: $(TESTS)
 	@$(foreach t,$(TESTS),$(t);)
+	@rm -f *.o */*.o $(TESTS)
 
 $(TESTS): %: %.o hmmlib.o test/unit_test.o
 	@gcc $< hmmlib.o test/unit_test.o -o $@

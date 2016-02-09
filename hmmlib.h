@@ -1,6 +1,8 @@
 #ifndef HMMLIB_H
 #define HMMLIB_H
 
+#include <stdio.h>
+
 typedef struct HMM {
     int num_states;
     int num_tokens;
