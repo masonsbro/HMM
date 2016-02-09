@@ -3,3 +3,4 @@ test/test_*
 !test/test_*.c
 
 *.o
+*.sublime-workspace
