@@ -12,6 +12,16 @@ void set_test_name(char* name) {
     TEST_NAME = name;
 }
 
+void assert_null(void* ptr) {
+    ASSERTS_RUN++;
+    if (ptr != NULL) {
+        ASSERTS_FAILED++;
+        printf("%s %d: assert_null\n", TEST_NAME, ASSERTS_RUN);
+        printf("\tExpected:  NULL\n");
+        printf("\tActual:    %p\n", ptr);
+    }
+}
+
 void assert_int_e(int a, int b) {
     ASSERTS_RUN++;
     if (a != b) {

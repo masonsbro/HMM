@@ -2,6 +2,7 @@
 #define UNIT_TEST_H
 
 void set_test_name(char* name);
+void assert_null(void* ptr);
 void assert_int_e(int a, int b);
 void assert_int_ne(int a, int b);
 void assert_char_e(char a, char b);

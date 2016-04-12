@@ -16,5 +16,6 @@ typedef struct HMM {
 void load_HMM(FILE* stream, HMM* hmm);
 void save_HMM(FILE* stream, HMM* hmm);
 int generate_sequence(HMM* hmm, char** sequence, int max_length);
+void train_supervised(HMM* hmm, char** corpus, int* tags, int length);
 
 #endif

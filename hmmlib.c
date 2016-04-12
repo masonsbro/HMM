@@ -1,9 +1,12 @@
 #include "hmmlib.h"
 
+#include "hashtable.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 
 #define MAX_TOKEN_LENGTH 16
+#define TOKEN_TABLE_SIZE 10000
 
 void load_HMM(FILE* stream, HMM* hmm) {
 
@@ -84,8 +87,10 @@ void save_HMM(FILE* stream, HMM* hmm) {
 }
 
 static int choose_random(int* array, int total) {
+
     int accumulator = 0;
     int threshold = rand() % total + 1;
+
     for (int i = 0; ; i++) {
         accumulator += array[i];
         if (accumulator >= threshold) {
@@ -93,18 +98,20 @@ static int choose_random(int* array, int total) {
         }
     }
     return -1;
+
 }
 
 int generate_sequence(HMM* hmm, char** sequence, int max_length) {
     
     int cur_state = 0;
-    int j, accumulator, threshold;
+    int j = 0;
 
-    for (j = -1; j < max_length && cur_state != hmm->num_states; j++) {
-        if (cur_state != 0) {
+    while (j < max_length && cur_state != hmm->num_states) {
+        // Only try to add a token for states with tokens
+        if (hmm->token_distribution_total[cur_state] > 0) {
             int token = choose_random(hmm->token_distribution[cur_state],
                                       hmm->token_distribution_total[cur_state]);
-            sequence[j] = hmm->tokens[token];
+            sequence[j++] = hmm->tokens[token];
         }
         cur_state = choose_random(hmm->state_distribution[cur_state],
                                   hmm->state_distribution_total[cur_state]);
@@ -115,5 +122,28 @@ int generate_sequence(HMM* hmm, char** sequence, int max_length) {
 }
 
 void train_supervised(HMM* hmm, char** corpus, int* tags, int length) {
+
+    // Will eventually be max(tags) + 1
+    hmm->num_states = 0;
+
+    // Maps token -> index in tokens
+    HashTable* table = malloc(sizeof(*table));
+    ht_init(table, TOKEN_TABLE_SIZE);
+
+    for (int i = 0; i < length; i++) {
+
+        char* token = corpus[i];
+        int tag = tags[i];
+
+        if (tag >= hmm->num_states) {
+            hmm->num_states = tag + 1;
+        }
+
+        // ht_set();
+
+    }
+
+    ht_destroy(table);
+    free(table);
 
 }

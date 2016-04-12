@@ -1,20 +1,24 @@
 TESTS_C=$(wildcard test/test_*.c)
 TESTS=$(basename $(TESTS_C))
 TESTS_O=$(TESTS:=.o)
+REQS=hmmlib hashtable
+REQS_C=$(REQS:=.c)
+REQS_O=$(REQS:=.o)
+REQS_H=$(REQS:=.h)
 
 all: test
 
-main: main.o hmmlib.o
-	@gcc main.o hmmlib.o -o main
+main: main.o $(REQS_O)
+	@gcc main.o $(REQS_O) -o main
 
 test: $(TESTS)
 	@$(foreach t,$(TESTS),$(t);)
 	@rm -f *.o */*.o $(TESTS)
 
-$(TESTS): %: %.o hmmlib.o test/unit_test.o
-	@gcc $< hmmlib.o test/unit_test.o -o $@
+$(TESTS): %: %.o $(REQS_O) test/unit_test.o
+	@gcc $< $(REQS_O) test/unit_test.o -o $@
 
-%.o: %.c hmmlib.h
+%.o: %.c $(REQS_H)
 	@gcc -c $< -o $@
 
 clean:

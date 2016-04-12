@@ -1,8 +1,7 @@
-#include <stdio.h>
 #include <stdlib.h>
 
-#include "../hmmlib.h"
 #include "unit_test.h"
+#include "../hmmlib.h"
 
 int main(int argc, char* argv[]);
 
